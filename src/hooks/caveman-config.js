@@ -773,6 +773,11 @@ function readHistory(filePath) {
 
 const SKILL_MODES = ['caveman', 'ultracave', 'megacave'];
 
+const CLAUDE_REPLY_LANGUAGE =
+  '사용자에게 보이는 설명, 진행 메시지, 질문, 최종 답변은 항상 한국어로 작성한다. ' +
+  '이 규칙은 스킬의 사용자 언어 유지 규칙보다 우선한다. 영어 입력, 인용문, 도구 출력에도 적용한다. ' +
+  '코드, 명령어, 경로, API 이름, 오류 원문은 그대로 유지한다.';
+
 // Used when no SKILL.md resolves (standalone hook install without skills dir).
 // Each is the first line under the skill's `# <id>` heading.
 const FALLBACK_THESIS = {
@@ -877,4 +882,5 @@ module.exports = {
   gcSessionStore,
   // Ruleset injection
   skillPathCandidates, loadRuleset, thesisLine, rulesetBanner, fallbackRuleset,
+  CLAUDE_REPLY_LANGUAGE,
 };

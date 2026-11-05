@@ -257,13 +257,16 @@ test('active caveman reinforcement: skill thesis plus answer-scope rule (#303, #
     // A legacy 'full' mirror reads back as caveman.
     fs.writeFileSync(path.join(cfg, '.caveman-active'), 'full');
 
-    const ctx = contextOf(send(cfg, { prompt: 'ordinary follow-up' }));
+    const ctx = contextOf(send(cfg, { prompt: 'Explain this error in English: connection refused' }));
     assert.strictEqual(ctx,
       'CAVEMAN MODE ACTIVE (caveman). Respond terse like smart caveman. All technical substance stay.'
       + ' Only fluff die. Answer only what was asked: no unrequested background, lists, examples,'
       + ' walkthroughs, or follow-up offers; give code, steps, or warnings when the task needs them.'
       + ' Security warnings, irreversible actions, multi-step order: normal prose. Technical terms,'
-      + ' code, commands, paths, and errors stay exact.');
+      + ' code, commands, paths, and errors stay exact.'
+      + ' 사용자에게 보이는 설명, 진행 메시지, 질문, 최종 답변은 항상 한국어로 작성한다.'
+      + ' 이 규칙은 스킬의 사용자 언어 유지 규칙보다 우선한다. 영어 입력, 인용문, 도구 출력에도 적용한다.'
+      + ' 코드, 명령어, 경로, API 이름, 오류 원문은 그대로 유지한다.');
   } finally {
     fs.rmSync(cfg, { recursive: true, force: true });
   }

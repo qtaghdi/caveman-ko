@@ -142,6 +142,15 @@ test('ultracave fallback keeps the user-language rule (its skill floor keeps it 
   assert.match(out, /never switch/i);
 });
 
+test('Claude Code starts caveman and ultracave with Korean replies for both install paths', () => {
+  for (const withSkills of [true, false]) {
+    for (const mode of ['caveman', 'ultracave']) {
+      assert.match(activate({ withSkills, mode }), /최종 답변은 항상 한국어로 작성한다/);
+    }
+    assert.doesNotMatch(activate({ withSkills, mode: 'megacave' }), /항상 한국어/);
+  }
+});
+
 test('every fallback keeps the plain-prose exceptions', () => {
   for (const mode of ['caveman', 'ultracave', 'megacave']) {
     const out = activate({ withSkills: false, mode });

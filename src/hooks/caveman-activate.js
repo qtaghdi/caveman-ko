@@ -386,7 +386,8 @@ const skillContent = loadRuleset(mode, __dirname);
 
 return rulesetBanner(mode) + '\n\n'
   + (skillContent ? skillContent.trimEnd() : fallbackRuleset(mode, __dirname))
-  + '\n\n' + SWITCH_LINE;
+  + '\n\n' + SWITCH_LINE
+  + (mode !== 'megacave' && cfg.CLAUDE_REPLY_LANGUAGE ? '\n\n' + cfg.CLAUDE_REPLY_LANGUAGE : '');
 }
 
 function run(source, sessionCwd, sessionId) {
